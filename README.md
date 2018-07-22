@@ -5,6 +5,12 @@
 A small library for converting itunes xml files to scala.
 I made this library for using itunes Tracks and Playlists in some of my projects.
 
+## Travis
+
+[![Build Status](https://travis-ci.org/sfxcode/sapphire-core.svg?branch=master)](https://travis-ci.org/sfxcode/itunes-reader)
+
+## Download
+
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/itunes-reader/images/download.svg?version=1.0.0) ](https://bintray.com/sfxcode/maven/itunes-reader/1.0.0/link)
 
 ## Demo
