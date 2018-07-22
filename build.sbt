@@ -36,4 +36,8 @@ libraryDependencies += "com.typesafe" % "config" % "1.3.3"
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 
+licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
+
+bintrayReleaseOnPublish in ThisBuild := true
+
 
