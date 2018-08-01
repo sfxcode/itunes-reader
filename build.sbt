@@ -41,4 +41,29 @@ libraryDependencies += "com.typesafe" % "config" % "1.3.3"
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 
+// publish
+
+bintrayReleaseOnPublish in ThisBuild := true
+
+
+publishMavenStyle := true
+
+homepage := Some(url("https://github.com/sfxcode/itunes-reader"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/sfxcode/itunes-reader"),
+    "scm:https://github.com/sfxcode/itunes-reader.git"
+  )
+)
+
+developers := List(
+  Developer(
+    id    = "sfxcode",
+    name  = "Tom Lamers",
+    email = "tom@sfxcode.com",
+    url   = url("https://github.com/sfxcode")
+  )
+)
+
 
