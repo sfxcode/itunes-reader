@@ -1,3 +1,5 @@
+val username = "sfxcode"
+val repo     = "simple-mongo"
 
 scalaVersion := "2.12.6"
 
@@ -39,5 +41,52 @@ libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 bintrayReleaseOnPublish in ThisBuild := true
+
+import ReleaseTransformations._
+lazy val releaseSettings = Seq(
+  releaseProcess := Seq[ReleaseStep](
+    checkSnapshotDependencies,
+    inquireVersions,
+    //runClean,
+    runTest,
+    setReleaseVersion,
+    commitReleaseVersion,
+    tagRelease,
+    releaseStepCommand("publishSigned"),
+    setNextVersion,
+    commitNextVersion,
+    releaseStepCommand("sonatypeReleaseAll"),
+    //pushChanges
+  )
+)
+
+lazy val publishSettings = Seq(
+  homepage := Some(url(s"https://github.com/$username/$repo")),
+  licenses += "Apache-2.0" -> url(s"https://github.com/$username/$repo/blob/master/LICENSE"),
+  scmInfo := Some(ScmInfo(url(s"https://github.com/$username/$repo"), s"git@github.com:$username/$repo.git")),
+  apiURL := Some(url(s"https://$username.github.io/$repo/latest/api/")),
+  releaseCrossBuild := true,
+  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
+  developers := List(
+    Developer(
+      id = username,
+      name = "Tom Lamers",
+      email = "tom@sfxcode.com",
+      url = new URL(s"http://github.com/${username}")
+    )
+  ),
+  useGpg := true,
+  usePgpKeyHex("5DC4808083B6B695"),
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  publishTo := Some(if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging),
+  credentials ++= (for {
+    username <- sys.env.get("SONATYPE_USERNAME")
+    password <- sys.env.get("SONATYPE_PASSWORD")
+  } yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq,
+  // Following 2 lines need to get around https://github.com/sbt/sbt/issues/4275
+  publishConfiguration := publishConfiguration.value.withOverwrite(true),
+  publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+)
 
 
