@@ -10,6 +10,13 @@ organization := "com.sfxcode.music"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
+credentials += Credentials(
+  "GnuPG Key ID",
+  "gpg",
+  "4E7DA7B5A0F86992D6EB3F514601878662E33372", // key identifier
+  "ignored" // passwords are supplied by pinentry
+)
+
 
 lazy val root = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
@@ -58,7 +65,6 @@ lazy val releaseSettings = Seq(
     setReleaseVersion,
     commitReleaseVersion,
     tagRelease,
-    releaseStepCommand("publishSigned"),
     setNextVersion,
     commitNextVersion,
     releaseStepCommand("sonatypeReleaseAll"),
@@ -72,7 +78,6 @@ lazy val publishSettings = Seq(
   scmInfo := Some(ScmInfo(url(s"https://github.com/$username/$repo"), s"git@github.com:$username/$repo.git")),
   apiURL := Some(url(s"https://$username.github.io/$repo/latest/api/")),
   releaseCrossBuild := true,
-  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   developers := List(
     Developer(
       id = username,
@@ -81,11 +86,12 @@ lazy val publishSettings = Seq(
       url = new URL(s"http://github.com/${username}")
     )
   ),
-  useGpg := true,
-  usePgpKeyHex("5DC4808083B6B695"),
+
   publishMavenStyle := true,
   publishArtifact in Test := false,
   publishTo := Some(if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging),
+
+
   credentials ++= (for {
     username <- sys.env.get("SONATYPE_USERNAME")
     password <- sys.env.get("SONATYPE_PASSWORD")
