@@ -22,6 +22,8 @@ buildInfoOptions += BuildInfoOption.BuildTime
 
 buildInfoPackage := "com.sfxcode.music.itunes"
 
+releaseCrossBuild := true
+
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.2" % Test
 
