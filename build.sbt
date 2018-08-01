@@ -10,12 +10,20 @@ organization := "com.sfxcode.music"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
+
 lazy val root = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
+
   settings(
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
     buildInfoPackage := "com.sfxcode.music.itunes"
+
   )
+  .settings(releaseSettings: _*)
+  .settings(publishSettings: _*)
+
+
+
 
 buildInfoOptions += BuildInfoOption.BuildTime
 
