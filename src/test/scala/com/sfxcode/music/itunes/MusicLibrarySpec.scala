@@ -12,6 +12,7 @@ class MusicLibrarySpec extends Specification {
     "be valid in" in {
       library.tracks must haveSize(49)
       library.playlists must haveSize(7)
+      library.builtTime must be greaterThan 0
     }
 
     "have valid playlist info" in {
@@ -23,6 +24,8 @@ class MusicLibrarySpec extends Specification {
       playlist.kind must be equalTo 0
       playlist.totalTime must be equalTo 6735373
       playlist.totalTimeString() must be equalTo "1h52m15s"
+
+      playlist.folder must beFalse
 
     }
 
