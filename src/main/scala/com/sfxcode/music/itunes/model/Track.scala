@@ -2,7 +2,7 @@ package com.sfxcode.music.itunes.model
 
 import com.typesafe.config.ConfigFactory
 import org.joda.time.Duration
-import org.joda.time.format.{PeriodFormatter, PeriodFormatterBuilder}
+import org.joda.time.format.{ PeriodFormatter, PeriodFormatterBuilder }
 
 import scala.collection.mutable
 
@@ -30,7 +30,7 @@ case class Track(data: TrackData, customValues: mutable.HashMap[String, Any] = n
 
   def totalTime: Int = data.totalTime
 
-  def totalTimeString(formatter:PeriodFormatter = Track.TotalTimeFormatter): String = {
+  def totalTimeString(formatter: PeriodFormatter = Track.TotalTimeFormatter): String = {
     val duration = new Duration(totalTime)
     formatter.print(duration.toPeriod)
   }
@@ -48,7 +48,6 @@ object Track {
 
   val MinuteSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.minute")
   val SecondSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.second")
-
 
   val TotalTimeFormatter: PeriodFormatter = new PeriodFormatterBuilder().appendMinutes.appendSuffix(MinuteSuffix).appendSeconds.appendSuffix(SecondSuffix).toFormatter
 }

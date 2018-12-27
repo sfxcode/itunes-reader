@@ -7,7 +7,7 @@ import org.joda.time.DateTime
 
 import scala.collection.mutable
 import scala.io.Source
-import scala.xml.pull.{EvElemEnd, EvElemStart, EvText, XMLEventReader}
+import scala.xml.pull.{ EvElemEnd, EvElemStart, EvText, XMLEventReader }
 
 object PullParser extends LazyLogging {
   val MusicLibraryPathMac = "Music/iTunes/iTunes Music Library.xml"
@@ -22,13 +22,12 @@ object PullParser extends LazyLogging {
     parseSource(source, callback)
   }
 
-
   def parseSource(source: Source, callback: (LibrarySection, Map[String, Any]) => Unit = new SimpleLoggingCallback().callback): Boolean = {
     try {
       parseXml(source, callback)
       true
     } catch {
-      case e:Exception =>
+      case e: Exception =>
         logger.error(e.getMessage, e)
         false
     }

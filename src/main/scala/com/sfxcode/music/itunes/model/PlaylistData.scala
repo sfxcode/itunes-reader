@@ -1,7 +1,7 @@
 package com.sfxcode.music.itunes.model
 
 case class PlaylistData(id: Long, name: String, kind: Int,
-                        visible: Boolean, music: Boolean, master: Boolean, trackSet: Set[Long])
+  visible: Boolean, music: Boolean, master: Boolean, trackSet: Set[Long])
 
 object PlaylistData extends MapHandling {
 
@@ -14,7 +14,6 @@ object PlaylistData extends MapHandling {
   val DistinguishedKind = "Distinguished Kind"
 
   val Tracks = "Tracks"
-
 
   def apply(map: Map[String, Any]): PlaylistData = {
     PlaylistData(intValue(map, PlaylistId), stringValue(map, Name), intValue(map, DistinguishedKind),

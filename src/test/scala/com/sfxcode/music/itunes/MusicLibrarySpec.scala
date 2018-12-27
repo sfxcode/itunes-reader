@@ -1,6 +1,6 @@
 package com.sfxcode.music.itunes
 
-import com.sfxcode.music.itunes.model.{Playlist, Track}
+import com.sfxcode.music.itunes.model.{ Playlist, Track }
 import org.specs2.mutable.Specification
 
 class MusicLibrarySpec extends Specification {
@@ -21,8 +21,8 @@ class MusicLibrarySpec extends Specification {
       playlist.data.trackSet must haveSize(24)
       playlist.tracks must haveSize(24)
       playlist.kind must be equalTo 0
-      playlist.totalTime  must be equalTo 6735373
-      playlist.totalTimeString()  must be equalTo "1h52m15s"
+      playlist.totalTime must be equalTo 6735373
+      playlist.totalTimeString() must be equalTo "1h52m15s"
 
     }
 
@@ -31,11 +31,10 @@ class MusicLibrarySpec extends Specification {
       option must beSome[Track]
       val track = option.head
       track.artist must be equalTo "Nirvana"
-      track.album  must be equalTo "Nevermind"
-      track.genre  must be equalTo "Rock"
-      track.totalTime  must be equalTo 301165
-      track.totalTimeString()  must be equalTo "5m1s"
-
+      track.album must be equalTo "Nevermind"
+      track.genre must be equalTo "Rock"
+      track.totalTime must be equalTo 301165
+      track.totalTimeString() must be equalTo "5m1s"
 
     }
   }

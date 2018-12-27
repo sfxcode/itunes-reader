@@ -1,9 +1,9 @@
 package com.sfxcode.music.itunes.model
 
 case class TrackData(id: Long, name: String, artist: String, album: String,
-                     composer: String, albumArtist: String, genre: String, year: Int,
-                     sampleRate: Int, bitRate: Int, totalTime: Int, artworkCount: Int,
-                     trackType: String, location: String)
+  composer: String, albumArtist: String, genre: String, year: Int,
+  sampleRate: Int, bitRate: Int, totalTime: Int, artworkCount: Int,
+  trackType: String, location: String)
 
 object TrackData extends MapHandling {
   val TrackId = "Track ID"

@@ -1,8 +1,8 @@
 package com.sfxcode.music.itunes
 
-import com.sfxcode.music.itunes.model.{Playlist, PlaylistData, Track, TrackData}
+import com.sfxcode.music.itunes.model.{ Playlist, PlaylistData, Track, TrackData }
 import com.sfxcode.music.itunes.xml.LibrarySection._
-import com.sfxcode.music.itunes.xml.{LibraryCallback, PullParser}
+import com.sfxcode.music.itunes.xml.{ LibraryCallback, PullParser }
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer

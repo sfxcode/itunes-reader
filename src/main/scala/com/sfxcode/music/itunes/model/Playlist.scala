@@ -2,7 +2,7 @@ package com.sfxcode.music.itunes.model
 
 import com.typesafe.config.ConfigFactory
 import org.joda.time.Duration
-import org.joda.time.format.{PeriodFormatter, PeriodFormatterBuilder}
+import org.joda.time.format.{ PeriodFormatter, PeriodFormatterBuilder }
 
 import scala.collection.mutable
 
@@ -20,9 +20,9 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
 
   def master: Boolean = data.master
 
-  def totalTime:Int = tracks.map(track => track.totalTime).sum
+  def totalTime: Int = tracks.map(track => track.totalTime).sum
 
-  def totalTimeString(formatter:PeriodFormatter = Playlist.TotalTimeFormatter): String = {
+  def totalTimeString(formatter: PeriodFormatter = Playlist.TotalTimeFormatter): String = {
     val duration = new Duration(totalTime)
     formatter.print(duration.toPeriod)
   }
