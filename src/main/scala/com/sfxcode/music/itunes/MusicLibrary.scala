@@ -1,13 +1,16 @@
 package com.sfxcode.music.itunes
 
-import com.sfxcode.music.itunes.model.{ Playlist, PlaylistData, Track, TrackData }
+import com.sfxcode.music.itunes.model.{Playlist, PlaylistData, Track, TrackData}
 import com.sfxcode.music.itunes.xml.LibrarySection._
-import com.sfxcode.music.itunes.xml.{ LibraryCallback, PullParser }
+import com.sfxcode.music.itunes.xml.{LibraryCallback, PullParser}
+import com.typesafe.scalalogging.LazyLogging
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
-class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) extends LibraryCallback {
+class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) extends LibraryCallback with LazyLogging {
+
+  private val start = System.currentTimeMillis()
 
   private val parseResultTrackMap = new mutable.HashMap[Long, Track]()
   private val parseResultPlaylists = new ArrayBuffer[Playlist]()
@@ -17,8 +20,28 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
   else
     PullParser.parseFile(filePath, callback)
 
+  logger.debug("parsed in %s ms".format(System.currentTimeMillis()-start))
+
   val tracks: List[Track] = parseResultTrackMap.values.toList
   val playlists: List[Playlist] = parseResultPlaylists.toList
+
+  addPlaylistHirachie
+
+  val builtTime = (System.currentTimeMillis()-start)
+  logger.debug("build music library in %s ms".format(builtTime))
+
+  protected def addPlaylistHirachie: Unit = {
+    val playlistMap = playlists.map(playlist => (playlist.persistantKey, playlist)).toMap
+    playlists.foreach(playList => {
+      val key = playList.parentPersistantKey
+      if (key.nonEmpty && playlistMap.contains(key)) {
+        val parentPlaylist = playlistMap(key)
+        playList.parent = Some(parentPlaylist)
+        parentPlaylist.children = parentPlaylist.children ++ List(playList)
+      }
+
+    })
+  }
 
   override def callback(section: LibrarySection, map: Map[String, Any]): Unit = {
     if (TrackType == section) {
@@ -42,6 +65,8 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
       }
     }
   }
+
+  override def toString: String = "MusicLibrary (@%s) Playlists:%s Tracks:%s BuiltTime:%s ms".format(hashCode(), playlists.size, tracks.size, builtTime)
 }
 
 object MusicLibrary {

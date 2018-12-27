@@ -2,6 +2,14 @@
 
 ## Versions
 
+### 1.0.5
+* MusicLibrary PlayList Parent/Children Handling
+* MusicLibrary BuildTime added
+* Music Library toString added
+* PlayListData folder (Boolean), parentPersistantKey, persistantKey added
+* PlayList folder, parentPersistantKey, persistantKey added
+* PlayList parent, children, parentName added
+
 ### 1.0.4
 
 * scala 2.12.8
@@ -9,7 +17,6 @@
 * org.scala-lang.modules:scala-xml : 1.1.0  -> 1.1.1 
 * org.scala-lang:scala-library     : 2.12.6 -> 2.12.8
 * org.specs2:specs2-core:test      : 4.3.2  -> 4.3.6 
-
 
 ### 1.0.0
 
