@@ -2,7 +2,7 @@
 
 ## Versions
 
-### 1.0.1
+### 1.0.4
 
 * scala 2.12.8
 * joda-time:joda-time              : 2.10   -> 2.10.1
