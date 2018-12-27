@@ -1,9 +1,9 @@
 val username = "sfxcode"
 val repo = "simple-mongo"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.8"
 
-crossScalaVersions := Seq("2.12.6", "2.11.11")
+crossScalaVersions := Seq("2.12.8", "2.11.12")
 
 name := "itunes-reader"
 organization := "com.sfxcode.music"
@@ -21,8 +21,6 @@ lazy val root = (project in file(".")).
 buildInfoOptions += BuildInfoOption.BuildTime
 
 buildInfoPackage := "com.sfxcode.music.itunes"
-
-releaseCrossBuild := true
 
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.2" % Test
@@ -42,6 +40,9 @@ libraryDependencies += "com.typesafe" % "config" % "1.3.3"
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 
 // publish
+
+releaseCrossBuild := true
+
 
 bintrayReleaseOnPublish in ThisBuild := true
 
