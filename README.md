@@ -11,8 +11,7 @@ I made this library for using itunes Tracks and Playlists in some of my projects
 
 ## Download
 
-[ ![Download](https://api.bintray.com/packages/sfxcode/maven/itunes-reader/images/download.svg?version=1.0.0) ](https://bintray.com/sfxcode/maven/itunes-reader/1.0.0/link)
-
+[ ![Download](https://api.bintray.com/packages/sfxcode/maven/itunes-reader/images/download.svg) ](https://bintray.com/sfxcode/maven/itunes-reader/_latestVersion)
 ## Demo
 
 ```scala
