@@ -1,8 +1,8 @@
 package com.sfxcode.music.itunes
 
-import com.sfxcode.music.itunes.model.{Playlist, PlaylistData, Track, TrackData}
+import com.sfxcode.music.itunes.model.{ Playlist, PlaylistData, Track, TrackData }
 import com.sfxcode.music.itunes.xml.LibrarySection._
-import com.sfxcode.music.itunes.xml.{LibraryCallback, PullParser}
+import com.sfxcode.music.itunes.xml.{ LibraryCallback, PullParser }
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.collection.mutable
@@ -20,14 +20,14 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
   else
     PullParser.parseFile(filePath, callback)
 
-  logger.debug("parsed in %s ms".format(System.currentTimeMillis()-start))
+  logger.debug("parsed in %s ms".format(System.currentTimeMillis() - start))
 
   val tracks: List[Track] = parseResultTrackMap.values.toList
   val playlists: List[Playlist] = parseResultPlaylists.toList
 
   addPlaylistHirachie
 
-  val builtTime = (System.currentTimeMillis()-start)
+  val builtTime = (System.currentTimeMillis() - start)
   logger.debug("build music library in %s ms".format(builtTime))
 
   protected def addPlaylistHirachie: Unit = {

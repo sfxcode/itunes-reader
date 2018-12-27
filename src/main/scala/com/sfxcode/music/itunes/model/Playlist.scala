@@ -8,11 +8,11 @@ import scala.collection.mutable
 
 case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutable.HashMap[String, Any] = new mutable.HashMap()) {
 
-  var parent:Option[Playlist] = None
-  var children:List[Playlist] = List()
+  var parent: Option[Playlist] = None
+  var children: List[Playlist] = List()
 
   def id: Long = data.id
-  def persistantKey:String  = data.persistantKey
+  def persistantKey: String = data.persistantKey
   def parentPersistantKey: String = data.parentPersistantKey
 
   def name: String = data.name
@@ -23,8 +23,6 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
     else
       PlaylistData.EmptyParentString
   }
-
-
 
   def kind: Int = data.kind
 

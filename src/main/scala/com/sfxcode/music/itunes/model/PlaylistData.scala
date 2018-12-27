@@ -1,13 +1,13 @@
 package com.sfxcode.music.itunes.model
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{ Config, ConfigFactory }
 
-case class PlaylistData(id: Long, persistantKey:String, parentPersistantKey:String,
-                        name: String, kind: Int,
-  visible: Boolean, music: Boolean, master: Boolean, folder:Boolean, trackSet: Set[Long]) {
+case class PlaylistData(id: Long, persistantKey: String, parentPersistantKey: String,
+  name: String, kind: Int,
+  visible: Boolean, music: Boolean, master: Boolean, folder: Boolean, trackSet: Set[Long]) {
 }
 
-object PlaylistData extends MapHandling  {
+object PlaylistData extends MapHandling {
 
   val EmptyParentString = ConfigFactory.load().getString("com.sfxcode.music.itunes.model.parent.emptyString")
 
@@ -27,7 +27,7 @@ object PlaylistData extends MapHandling  {
   def apply(map: Map[String, Any]): PlaylistData = {
     PlaylistData(intValue(map, PlaylistId), stringValue(map, PlaylistPersistentId), stringValue(map, ParentPersistentId),
       stringValue(map, Name), intValue(map, DistinguishedKind),
-      booleanValue(map, Visible), booleanValue(map, Music), booleanValue(map, Master),booleanValue(map, Folder),
+      booleanValue(map, Visible), booleanValue(map, Music), booleanValue(map, Master), booleanValue(map, Folder),
       setValue(map, Tracks))
   }
 
