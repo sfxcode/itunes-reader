@@ -33,7 +33,7 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
   val builtTime: Long = System.currentTimeMillis() - start
   logger.debug("build music library in %s ms".format(builtTime))
 
-  def playlistsForTrack(track: Track):List[Playlist] = {
+  def playlistsForTrack(track: Track): List[Playlist] = {
     trackPlaylistsMap(track.id).map(persistantKey => playlistMap(persistantKey))
   }
 

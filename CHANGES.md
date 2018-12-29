@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.2.1
+
+* PlayList duplicates
+
 ### 1.2.0
 
 * PlayList remove allTracks functions (no recursion for folder needed)

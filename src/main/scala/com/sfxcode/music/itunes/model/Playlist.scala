@@ -43,7 +43,9 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
 
   def tracksSize: Int = tracks.size
 
-  def trackSet:Set[Track] = tracks.distinct.toSet
+  def trackSet: Set[Track] = tracks.distinct.toSet
+
+  def duplicates: Set[Track] = tracks.groupBy(identity).collect { case (x, List(_, _, _*)) => x }.toSet
 
   def containsTrackWithId(trackId: Long): Boolean = data.trackSet.contains(trackId)
 
