@@ -10,7 +10,7 @@ object TestApp extends App {
   val lib = MusicLibrary.applyBasic(path)
 
   lib.playlists.foreach(playlist => {
-    println(playlist.name + " : " + playlist.totalTimeString())
+    println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.trackSize + " : " + playlist.allTracks.size)
   })
 
   println(lib.playlists.head)

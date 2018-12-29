@@ -17,7 +17,7 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
 
   def name: String = data.name
 
-  def parentName = {
+  def parentName: String = {
     if (parent.isDefined)
       parent.get.name
     else
@@ -41,6 +41,14 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
     formatter.print(duration.toPeriod)
   }
 
+  def trackSize: Int = {
+    children.map(playList => playList.trackSize).sum + tracks.size
+  }
+
+  def allTracks: List[Track] = {
+    children.flatMap(playList => playList.tracks) ++ tracks
+  }
+
   def containsTrackWithId(trackId: Long): Boolean = data.trackSet.contains(trackId)
 
   override def toString: String = "%s [%s] (%s)".format(name, tracks, id)
@@ -48,9 +56,9 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
 }
 
 object Playlist {
-  val HourSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.hour")
-  val MinuteSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.minute")
-  val SecondSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.second")
+  val HourSuffix: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.hour")
+  val MinuteSuffix: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.minute")
+  val SecondSuffix: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.second")
 
   val TotalTimeFormatter: PeriodFormatter = new PeriodFormatterBuilder().appendHours()
     .appendSuffix(HourSuffix).appendMinutes.appendSuffix(MinuteSuffix).appendSeconds.appendSuffix(SecondSuffix).toFormatter

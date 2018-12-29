@@ -2,7 +2,13 @@
 
 ## Versions
 
+### 1.0.6
+
+* PlayList trackSize (recursive) added
+* PlayList allTracks (recursive) added
+
 ### 1.0.5
+
 * MusicLibrary PlayList Parent/Children Handling
 * MusicLibrary BuildTime added
 * Music Library toString added

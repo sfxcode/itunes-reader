@@ -25,12 +25,12 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
   val tracks: List[Track] = parseResultTrackMap.values.toList
   val playlists: List[Playlist] = parseResultPlaylists.toList
 
-  addPlaylistHirachie
+  addPlaylistHirachie()
 
-  val builtTime = (System.currentTimeMillis() - start)
+  val builtTime: Long = System.currentTimeMillis() - start
   logger.debug("build music library in %s ms".format(builtTime))
 
-  protected def addPlaylistHirachie: Unit = {
+  protected def addPlaylistHirachie(): Unit = {
     val playlistMap = playlists.map(playlist => (playlist.persistantKey, playlist)).toMap
     playlists.foreach(playList => {
       val key = playList.parentPersistantKey

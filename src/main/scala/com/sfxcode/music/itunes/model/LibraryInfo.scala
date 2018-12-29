@@ -5,7 +5,7 @@ import PlaylistData._
 
 object LibraryInfo {
 
-  val LongKeys = Set(TrackId, PlaylistId, PlayDate)
+  val LongKeys: Set[String] = Set(TrackId, PlaylistId, PlayDate)
 
   val KeyPlaylist = "playlist"
   val KeyLastPlaylist = "lastPlaylist"

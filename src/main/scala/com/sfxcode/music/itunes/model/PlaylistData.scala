@@ -1,6 +1,6 @@
 package com.sfxcode.music.itunes.model
 
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.typesafe.config.ConfigFactory
 
 case class PlaylistData(id: Long, persistantKey: String, parentPersistantKey: String,
   name: String, kind: Int,
@@ -9,7 +9,7 @@ case class PlaylistData(id: Long, persistantKey: String, parentPersistantKey: St
 
 object PlaylistData extends MapHandling {
 
-  val EmptyParentString = ConfigFactory.load().getString("com.sfxcode.music.itunes.model.parent.emptyString")
+  val EmptyParentString: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.model.parent.emptyString")
 
   val PlaylistId = "Playlist ID"
   val PlaylistPersistentId = "Playlist Persistent ID"

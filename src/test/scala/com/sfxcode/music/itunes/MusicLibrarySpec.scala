@@ -27,6 +27,9 @@ class MusicLibrarySpec extends Specification {
 
       playlist.folder must beFalse
 
+      playlist.trackSize must be equalTo 24
+      playlist.allTracks must be equalTo playlist.tracks
+
     }
 
     "have valid track info" in {

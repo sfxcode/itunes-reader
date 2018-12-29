@@ -46,8 +46,8 @@ case class Track(data: TrackData, customValues: mutable.HashMap[String, Any] = n
 
 object Track {
 
-  val MinuteSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.minute")
-  val SecondSuffix = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.second")
+  val MinuteSuffix: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.minute")
+  val SecondSuffix: String = ConfigFactory.load().getString("com.sfxcode.music.itunes.format.suffix.second")
 
   val TotalTimeFormatter: PeriodFormatter = new PeriodFormatterBuilder().appendMinutes.appendSuffix(MinuteSuffix).appendSeconds.appendSuffix(SecondSuffix).toFormatter
 }
