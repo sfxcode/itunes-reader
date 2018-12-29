@@ -2,7 +2,7 @@
 
 ## Info
 
-A small library for converting itunes xml files to scala.
+Library for converting itunes xml files to scala model classes.
 I made this library for using itunes Tracks and Playlists in some of my projects.
 
 ## Travis
@@ -12,6 +12,64 @@ I made this library for using itunes Tracks and Playlists in some of my projects
 ## Download
 
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/itunes-reader/images/download.svg) ](https://bintray.com/sfxcode/maven/itunes-reader/_latestVersion)
+
+## Model
+
+### MusicLibrary
+
+Members:
+
+* tracks: List[Track]
+* playlists: List[Playlist]
+* builtTime: Long (Parsing and computing of itunes xml data in ms)
+
+### PlayList
+
+Support for: 
+
+Playlist ID, Playlist Persistent ID, Parent Persistent ID, Name,
+Master", Folder, Visible, Music, Distinguished Kind
+
+Members:
+
+* data: PlaylistData
+* customValues: Map[String, Any] 
+* parent: Option[Playlist]
+* children: List[Playlist]
+
+Functions:
+
+* parentName: name of parent playlist (if exist)
+* containsTrackWithId
+
+* totalTime: totalTime of of tracks for this Playlist
+* totalTimeString: formatted totalTime of of tracks for this Playlist
+
+If there are folders in your itunes lib, use recursive functions
+
+* allTracksTime: recursive totalTime
+* allTracksTimeString: formatted allTracksTime
+* allTracksSize: recursive size of tracks
+* allTracks: recursive list of tracks
+
+### Track
+
+Support for: 
+
+Track ID, Name, Artist, Album, Composer, Album Artist, Genre, Sample Rate,
+Bit Rate, Artwork Count, Total Time Year, Play Count, Play Date, Track Type, Location
+
+Members:
+
+* data: PlaylistData
+* customValues: Map[String, Any]
+
+Functions:
+
+* totalTimeString: **3m43s** (formatted total time)
+
+
+
 ## Demo
 
 ```scala

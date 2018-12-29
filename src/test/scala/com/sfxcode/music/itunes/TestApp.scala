@@ -9,13 +9,18 @@ object TestApp extends App {
 
   val lib = MusicLibrary.applyBasic(path)
 
+  println(lib)
+  println()
+  println(lib.playlists.head)
+  println()
+
   lib.playlists.foreach(playlist => {
-    println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.trackSize + " : " + playlist.allTracks.size)
+    println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.allTracksSize + " : " + playlist.allTracks.size)
   })
 
-  println(lib.playlists.head)
-
-  println(lib)
+  println()
+  println(lib.tracks.head)
+  println()
 
   lib.tracks.foreach(track => {
     println(track.name + " : " + track.totalTimeString())

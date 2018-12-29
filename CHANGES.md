@@ -2,6 +2,14 @@
 
 ## Versions
 
+### 1.1.0
+
+* PlayList trackSize rename to allTracksSize
+* PlayList tracksSize
+* PlayList allTracksTime
+* PlayList allTracksTimeString
+* Readme Model Section
+
 ### 1.0.6
 
 * PlayList trackSize (recursive) added
