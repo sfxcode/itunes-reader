@@ -22,6 +22,7 @@ Members:
 * tracks: List[Track]
 * playlists: List[Playlist]
 * builtTime: Long (Parsing and computing of itunes xml data in ms)
+* playlistsForTrack: List[Playlist]
 
 ### PlayList
 
@@ -39,18 +40,14 @@ Members:
 
 Functions:
 
+* trackSet: Set[Track]  (removes duplicate tracks if exist)
+
 * parentName: name of parent playlist (if exist)
 * containsTrackWithId
 
 * totalTime: totalTime of of tracks for this Playlist
 * totalTimeString: formatted totalTime of of tracks for this Playlist
 
-If there are folders in your itunes lib, use recursive functions
-
-* allTracksTime: recursive totalTime
-* allTracksTimeString: formatted allTracksTime
-* allTracksSize: recursive size of tracks
-* allTracks: recursive list of tracks
 
 ### Track
 

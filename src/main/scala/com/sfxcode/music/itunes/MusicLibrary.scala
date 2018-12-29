@@ -25,22 +25,39 @@ class MusicLibrary(filePath: String = "", completeTrackInfo: Boolean = true) ext
   val tracks: List[Track] = parseResultTrackMap.values.toList
   val playlists: List[Playlist] = parseResultPlaylists.toList
 
+  protected val playlistMap = playlists.map(playlist => (playlist.persistantKey, playlist)).toMap
+  protected var trackPlaylistsMap: Map[Long, List[String]] = Map()
+
   addPlaylistHirachie()
 
   val builtTime: Long = System.currentTimeMillis() - start
   logger.debug("build music library in %s ms".format(builtTime))
 
+  def playlistsForTrack(track: Track):List[Playlist] = {
+    trackPlaylistsMap(track.id).map(persistantKey => playlistMap(persistantKey))
+  }
+
   protected def addPlaylistHirachie(): Unit = {
-    val playlistMap = playlists.map(playlist => (playlist.persistantKey, playlist)).toMap
+    val trackPlaylistsTempMap = new mutable.HashMap[Long, List[String]]()
     playlists.foreach(playList => {
-      val key = playList.parentPersistantKey
-      if (key.nonEmpty && playlistMap.contains(key)) {
-        val parentPlaylist = playlistMap(key)
+      val parentPersistantKey = playList.parentPersistantKey
+      val persistantKey = playList.persistantKey
+      if (parentPersistantKey.nonEmpty && playlistMap.contains(parentPersistantKey)) {
+        val parentPlaylist = playlistMap(parentPersistantKey)
         playList.parent = Some(parentPlaylist)
         parentPlaylist.children = parentPlaylist.children ++ List(playList)
       }
+      playList.tracks.foreach(track => {
+        if (trackPlaylistsTempMap.contains(track.id)) {
+          trackPlaylistsTempMap.+=(track.id -> (trackPlaylistsTempMap(track.id) ++ List(persistantKey)))
+        } else {
+          trackPlaylistsTempMap.+=(track.id -> List(persistantKey))
+        }
+
+      })
 
     })
+    trackPlaylistsMap = trackPlaylistsTempMap.toMap
   }
 
   override def callback(section: LibrarySection, map: Map[String, Any]): Unit = {

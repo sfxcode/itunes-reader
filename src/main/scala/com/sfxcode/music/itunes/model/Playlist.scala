@@ -41,27 +41,9 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
     formatter.print(duration.toPeriod)
   }
 
+  def tracksSize: Int = tracks.size
 
-  // recursive functions
-
-  def tracksSize:Int = tracks.size
-
-  def allTracksTime: Int = {
-    children.map(playList => playList.totalTime).sum + totalTime
-  }
-
-  def allTracksTimeString(formatter: PeriodFormatter = Playlist.TotalTimeFormatter): String = {
-    val duration = new Duration(allTracksTime)
-    formatter.print(duration.toPeriod)
-  }
-
-  def allTracksSize: Int = {
-    children.map(playList => playList.allTracksSize).sum + tracksSize
-  }
-
-  def allTracks: List[Track] = {
-    children.flatMap(playList => playList.tracks) ++ tracks
-  }
+  def trackSet:Set[Track] = tracks.distinct.toSet
 
   def containsTrackWithId(trackId: Long): Boolean = data.trackSet.contains(trackId)
 

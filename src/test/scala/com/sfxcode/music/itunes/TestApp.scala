@@ -15,11 +15,13 @@ object TestApp extends App {
   println()
 
   lib.playlists.foreach(playlist => {
-    println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.allTracksSize + " : " + playlist.allTracks.size)
+    println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.tracksSize)
   })
 
   println()
-  println(lib.tracks.head)
+  println(lib.tracks.size)
+  println()
+  println(lib.tracks.head + " => " + lib.playlistsForTrack(lib.tracks.head).map(playlist => playlist.name))
   println()
 
   lib.tracks.foreach(track => {

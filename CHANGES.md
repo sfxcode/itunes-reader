@@ -2,6 +2,12 @@
 
 ## Versions
 
+### 1.2.0
+
+* PlayList remove allTracks functions (no recursion for folder needed)
+* PlayList trackSet
+* MusicLibrary playlistsForTrack 
+
 ### 1.1.0
 
 * PlayList trackSize rename to allTracksSize

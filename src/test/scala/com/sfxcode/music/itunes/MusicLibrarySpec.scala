@@ -27,8 +27,7 @@ class MusicLibrarySpec extends Specification {
 
       playlist.folder must beFalse
 
-      playlist.allTracksSize must be equalTo 24
-      playlist.allTracks must be equalTo playlist.tracks
+      playlist.tracksSize must be equalTo 24
 
     }
 
