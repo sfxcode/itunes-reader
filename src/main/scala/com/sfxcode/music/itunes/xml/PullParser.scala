@@ -99,8 +99,11 @@ object PullParser extends LazyLogging {
               }
             }
             if ((isTrackMode && dictDepth == 3) || (isPlaylistMode && dictDepth == 2)) {
-              if (isKeyElement)
+              if (isKeyElement) {
                 key = text
+                if ("Smart Criteria".equals(key))
+                  map.+=("smart" -> true)
+              }
               else if (isStringElement)
                 map.+=(key -> text.trim)
               else if (isIntegerElement) {

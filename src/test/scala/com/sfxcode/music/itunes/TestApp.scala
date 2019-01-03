@@ -14,7 +14,7 @@ object TestApp extends App {
   println(lib.playlists.head)
   println()
 
-  lib.playlists.foreach(playlist => {
+  lib.playlists.filter(pl => pl.smart).foreach(playlist => {
     println(playlist.name + " : " + playlist.totalTimeString() + " : " + playlist.tracksSize)
   })
 
@@ -24,8 +24,8 @@ object TestApp extends App {
   println(lib.tracks.head + " => " + lib.playlistsForTrack(lib.tracks.head).map(playlist => playlist.name))
   println()
 
-  lib.tracks.foreach(track => {
-    println(track.name + " : " + track.totalTimeString())
+  lib.tracks.take(5).foreach(track => {
+    println(track.name + " : " + track.artist + " : " + track.album +  " : " + track.totalTimeString())
   })
 
 }

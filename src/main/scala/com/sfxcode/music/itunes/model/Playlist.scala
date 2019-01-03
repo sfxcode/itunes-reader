@@ -34,6 +34,8 @@ case class Playlist(data: PlaylistData, tracks: List[Track], customValues: mutab
 
   def folder: Boolean = data.folder
 
+  def smart: Boolean = data.smart
+
   def totalTime: Int = tracks.map(track => track.totalTime).sum
 
   def totalTimeString(formatter: PeriodFormatter = Playlist.TotalTimeFormatter): String = {

@@ -5,6 +5,7 @@
 ### 1.2.1
 
 * PlayList duplicates
+* PlayList smart (Boolean)
 
 ### 1.2.0
 
