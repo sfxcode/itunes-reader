@@ -103,8 +103,7 @@ object PullParser extends LazyLogging {
                 key = text
                 if ("Smart Criteria".equals(key))
                   map.+=("smart" -> true)
-              }
-              else if (isStringElement)
+              } else if (isStringElement)
                 map.+=(key -> text.trim)
               else if (isIntegerElement) {
                 if (LibraryInfo.LongKeys.contains(key))

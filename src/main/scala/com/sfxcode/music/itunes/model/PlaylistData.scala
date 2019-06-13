@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigFactory
 
 case class PlaylistData(id: Long, persistantKey: String, parentPersistantKey: String,
   name: String, kind: Int,
-  visible: Boolean, music: Boolean, master: Boolean, folder: Boolean, smart:Boolean, trackSet: Set[Long]) {
+  visible: Boolean, music: Boolean, master: Boolean, folder: Boolean, smart: Boolean, trackSet: Set[Long]) {
 }
 
 object PlaylistData extends MapHandling {
@@ -28,7 +28,7 @@ object PlaylistData extends MapHandling {
     PlaylistData(intValue(map, PlaylistId), stringValue(map, PlaylistPersistentId), stringValue(map, ParentPersistentId),
       stringValue(map, Name), intValue(map, DistinguishedKind),
       booleanValue(map, Visible), booleanValue(map, Music), booleanValue(map, Master), booleanValue(map, Folder),
-      map.contains("smart") && ! booleanValue(map, Folder) ,
+      map.contains("smart") && !booleanValue(map, Folder),
       setValue(map, Tracks))
   }
 

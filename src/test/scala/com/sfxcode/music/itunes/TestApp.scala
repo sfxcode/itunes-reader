@@ -25,7 +25,7 @@ object TestApp extends App {
   println()
 
   lib.tracks.take(5).foreach(track => {
-    println(track.name + " : " + track.artist + " : " + track.album +  " : " + track.totalTimeString())
+    println(track.name + " : " + track.artist + " : " + track.album + " : " + track.totalTimeString())
   })
 
 }
