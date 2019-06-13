@@ -4,6 +4,7 @@
 
 ### 1.2.1
 
+* Scala 2.13
 * PlayList duplicates
 * PlayList smart (Boolean)
 
