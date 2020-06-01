@@ -1,20 +1,18 @@
 val username = "sfxcode"
-val repo = "simple-mongo"
+val repo     = "simple-mongo"
 
-scalaVersion := "2.13.0"
+scalaVersion := "2.13.2"
 
-crossScalaVersions := Seq("2.13.0", "2.12.10", "2.11.12")
+crossScalaVersions := Seq("2.13.2", "2.12.11")
 
 name := "itunes-reader"
 organization := "com.sfxcode.music"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
-
-lazy val root = (project in file(".")).
-  enablePlugins(BuildInfoPlugin).
-
-  settings(
+lazy val root = (project in file("."))
+  .enablePlugins(BuildInfoPlugin)
+  .settings(
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
   )
 
@@ -22,20 +20,17 @@ buildInfoOptions += BuildInfoOption.BuildTime
 
 buildInfoPackage := "com.sfxcode.music.itunes"
 
-
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.0" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.9.4" % Test
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 
 libraryDependencies += "com.github.tototoshi" %% "scala-csv" % "1.3.6" % Test
 
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.3.0"
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.2.0"
+libraryDependencies += "joda-time" % "joda-time" % "2.10.6"
 
-libraryDependencies += "joda-time" % "joda-time" % "2.10.3"
-
-libraryDependencies += "com.typesafe" % "config" % "1.3.4"
-
+libraryDependencies += "com.typesafe" % "config" % "1.4.0"
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
@@ -43,9 +38,7 @@ libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 releaseCrossBuild := true
 
-
 bintrayReleaseOnPublish in ThisBuild := true
-
 
 publishMavenStyle := true
 
@@ -60,11 +53,9 @@ scmInfo := Some(
 
 developers := List(
   Developer(
-    id    = "sfxcode",
-    name  = "Tom Lamers",
+    id = "sfxcode",
+    name = "Tom Lamers",
     email = "tom@sfxcode.com",
-    url   = url("https://github.com/sfxcode")
+    url = url("https://github.com/sfxcode")
   )
 )
-
-
